@@ -42,5 +42,5 @@ for key,value in memory_to_areas.items():
     mtastring += ' ["' + key + '"] = "' + value + '",'
 mtastring[:-1] += ' }'
 
-with open("roomnames.Lua", "w") as f:
+with open("roomnames.lua", "w") as f:
   f.writelines([mtrstring,mtastring])
