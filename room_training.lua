@@ -1,6 +1,6 @@
 RMNM = require "roomnames"   -- Lua file containing tables that translate memory addresses to names
-local statepath = '..\\GBA\\State\\TESTFOLDER\\'    -- append the name of a savestate file to the path for it to load properly with savestate.load()
-local path = '..\\GBA\\State\\'
+local statepath = '..\\GBA\\State\\ROOMTRAINERFOLDER\\'    -- append the name of a savestate file to the path for it to load properly with savestate.load()
+local path = '..\\GBA\\State\\'    -- path to State folder in which we save the temporary save for the room-only mode
 local temp_save = 'temporary_savestate.State'
 
 local timer_frames = 0
@@ -9,10 +9,10 @@ local name_to_area = {}
 local name_to_room = {}
 local areasnames = {}
 
--- reads through the TESTFOLDER directory to get each savestate name in a table
-local savestate_names = {}  -- [1 hex byte] (area memory value) = { [2 hex bytes] (room memory value) = rooms } (/!\ these hex values are lowercase)
-for dir in io.popen([[dir "..\GBA\State\TESTFOLDER\" /b]]):lines() do   -- lists every savestate name into the savestate_names table, associating a room + area to one or more savestates
-    local temp_area = string.upper(string.sub(dir,3,4))
+-- reads through the ROOMTRAINERFOLDER directory to get each savestate name in a table
+local savestate_names = {}  -- [1 hex byte] (area memory value) = { [2 hex bytes] (room memory value) = rooms }
+for dir in io.popen([[dir "..\GBA\State\ROOMTRAINERFOLDER\" /b]]):lines() do   -- lists every savestate name into the savestate_names table, associating a room + area to one or more savestates
+    local temp_area = string.upper(string.sub(dir,3,4))    -- making the hex values uppercase so that it corresponds to the format used in the excel file
     local temp_room = string.upper(string.sub(dir,1,4))
     if savestate_names[temp_area] == nil then   -- if a value is not assigned yet
         savestate_names[temp_area] = { [temp_room] = {dir} }
@@ -39,7 +39,7 @@ end
 local function load_current_room()
     local area = forms.gettext(AREA_MENU)
     local room = forms.gettext(ROOM_MENU)
-    local area_memory = name_to_area[area]  -- may not be a function; a table rather
+    local area_memory = name_to_area[area]
     local room_memory = name_to_room[room .. "PLUS" .. area]
     local res_savestate = savestate_names[area_memory][room_memory]
     forms.setdropdownitems(INDIVIDUAL_STATE_MENU,res_savestate)
@@ -59,8 +59,8 @@ end
 FORM = forms.newform(300,200, "ROOM TRAINER")
 
 -- drop down menus
-AREA_MENU = forms.dropdown(FORM,areasnames,10,10,170,20) -- items to set
-ROOM_MENU = forms.dropdown(FORM,{"blank room"},10,40,170,20)   -- items to set
+AREA_MENU = forms.dropdown(FORM,areasnames,10,10,170,20)
+ROOM_MENU = forms.dropdown(FORM,{"blank room"},10,40,170,20)
 INDIVIDUAL_STATE_MENU = forms.dropdown(FORM,{"blank state"},10,70,170,20)
 
 -- buttons to update menus / load savestates
@@ -87,6 +87,7 @@ while true do
         if forms.ischecked(SHUFFLE_RNG) then
             -- thankfully, it just so happens that time is less than 2^32 so is a very good placeholder for a random rng value
             -- nevertheless, time may not be the best since counting rng up to the value obtained may take 2^31 tries on average, that is 2^31 evaluation of the rng function, which is very time consuming and will make bizhawk crash
+            -- you could instead use the math.random(2**32) native Lua function to generate a random number between 1 and and 2^32 and then assign in to address 0x1150, not sure if it costs more ressources or not
             memory.write_u32_le(0x1150,os.time(),"IWRAM")
         end
     elseif current_roomandarea ~= previous_roomandarea then
@@ -98,7 +99,7 @@ while true do
         end
     end
 
-    if forms.ischecked(TIMER_CHECK) then
+    if forms.ischecked(TIMER_CHECK) then    -- displays the timer for a specific room since you entered it in frames and seconds
         gui.drawText(150,5,tostring(timer_frames) .. " f","cyan","black",12)
         gui.drawText(150,20,tostring((timer_frames//6)/10) .. " sec","pink","black",12)
     else
