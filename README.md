@@ -1,6 +1,8 @@
 # Room-Training-TMC
 Individual room trainer Lua script for the any% category of The Minish Cap.
-room_training.lua is the main Lua script that you run on the Bizhawk emulator while playing TMC, while having all your Lua file in the Lua folder of your Bizhawk folder and having created a ROOMTRAINERFOLDER folder in the State folder of Bizhawk, it helps selecting rooms to train on and enabling nice features so that training becomes easier.
+
+
+room_training.lua is the main Lua script that you run on the Bizhawk emulator while playing TMC, while having all your Lua files in the Lua folder of your Bizhawk folder and having created a ROOMTRAINERFOLDER folder in the State folder of Bizhawk, it helps selecting rooms to train on and enabling nice features so that training becomes easier.
 
 ### excel_read file:
 python program used to convert the data stored in the excel file (available at this link https://drive.google.com/drive/u/0/folders/1hvEhcaUQvcJ1vUw5QWFTk7_La_ELKD87) registering every room and area to their respective memory addresses into a Lua module that can be used by the room_training main file
