@@ -17,4 +17,7 @@ Lua script that displays an interface on Bizhawk letting the user choose rooms f
 
 
 ### roomnames file:
-Lua module used in `room_training.lua` creating two tables used to match memory values to room & area names, so the drop down menus on the interface are actually decipherable
+Lua module used in `room_training.lua` &mdash; and `find_all_rooms.lua`, the latter being for the sake of creating the `orderedrooms` Lua module &mdash; creating two tables used to match memory values to room & area names, so the drop down menus on the interface are actually decipherable
+
+### orderedrooms file:
+Lua module used by the last drop down menu created in `room_training.lua` used for clarity since it shows an ordered list of all the rooms visited during the any% route, you can load them individually
