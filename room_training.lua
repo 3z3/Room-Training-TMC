@@ -70,6 +70,30 @@ local function load_ordered()
     timer_frames = 0
 end
 
+local function next_room()
+    local name = forms.gettext(ROOMS_IN_ORDER)
+    local index = 1
+    local rooms = ORM.get_rooms()
+    while rooms[index] ~= name do
+        index = index + 1
+    end
+    name = rooms[index+1]
+    forms.settext(ROOMS_IN_ORDER,name)
+    load_ordered()
+end
+
+local function prev_room()
+    local name = forms.gettext(ROOMS_IN_ORDER)
+    local index = 1
+    local rooms = ORM.get_rooms()
+    while rooms[index] ~= name do
+        index = index + 1
+    end
+    name = rooms[index-1]
+    forms.settext(ROOMS_IN_ORDER,name)
+    load_ordered()
+end
+
 -- window
 FORM = forms.newform(300,200, "ROOM TRAINER")
 
@@ -93,6 +117,8 @@ MENU_TIME = forms.checkbox(FORM,"Time in Menu",120,160)
 forms.label(FORM,"Every Room in Order:",10,200,150,15)
 ROOMS_IN_ORDER = forms.dropdown(FORM,{"placeholder"},10,220,300,20)
 LOAD_ORDER = forms.button(FORM,"Load",load_ordered,10,250,100,20)
+PREV_ROOM = forms.button(FORM,"< Previous",prev_room,120,250,80,20)
+NEXT_ROOM = forms.button(FORM,"Next >",next_room,210,250,80,20)
 
 forms.setdropdownitems(ROOMS_IN_ORDER,ORM.get_rooms(),false)    -- this keeps the saves in order
 
