@@ -1,6 +1,12 @@
 # Room-Training-TMC
 Individual room trainer Lua script for the any% category of The Minish Cap.
 
+## Setup :
+_prerequisites_ : You have a Bizhawk folder from which you launch the Bizhawk emulator, everything that is described here takes place inside this folder.
+* create a folder inside the State folder named `ROOMTRAINERFOLDER`
+* put the contents of ROOMTRAINERFOLDER inside the eponym folder you just created
+* put `room_training.lua`, `roomnames.lua` and `orderedrooms.lua` inside the Lua folder
+* run the script `room_training.lua` from the emulator's interface
 
 `room_training.lua` is the main Lua script that you run on the Bizhawk emulator while playing TMC, while having all your Lua files in the Lua folder of your Bizhawk folder and having created a `ROOMTRAINERFOLDER` folder in the State folder of Bizhawk, it helps selecting rooms to train on and enabling nice features so that training becomes easier.
 
