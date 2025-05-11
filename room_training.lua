@@ -95,7 +95,7 @@ local function prev_room()
 end
 
 -- window
-FORM = forms.newform(300,200, "ROOM TRAINER")
+FORM = forms.newform(320,280, "ROOM TRAINER")
 
 -- drop down menus
 AREA_MENU = forms.dropdown(FORM,areasnames,10,10,170,20)
