@@ -31,5 +31,5 @@ Lua module used in `room_training.lua` &mdash; and `find_all_rooms.lua`, the lat
 ### orderedrooms file:
 Lua module used by the last drop down menu created in `room_training.lua` used for clarity since it shows an ordered list of all the rooms visited during the any% route, you can load them individually
 
-### anypercent_lotad.bk2
+### anypercent_lotad.bk2:
 Bizhawk movie file used in tandem with the `find_all_rooms.lua` script that executes a full any% run of The Minish Cap in an hour thirty at normal speed and goes through every expected room from the octo clip route of the any% category
