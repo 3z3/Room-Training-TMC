@@ -8,8 +8,8 @@ local ordered_rooms = {}
 local current_roomandarea = 0x0
 local previous_roomandarea = memory.read_u16_le(0x10AC,"IWRAM")
 
--- uncomment this line if you want to replay your movie at 500% speed (300 fps) so that it does not take as long
--- client.speedmode(500)
+-- uncomment this line if you want to replay your movie at 500% speed (300 fps) so that it does not take as long, this could make the savestates larger though not sure
+client.speedmode(500)
 
 while memory.read_u8(0x1744,"IWRAM") ~= 0x0D do -- vaati 3 is dead memory value
 
