@@ -40,12 +40,14 @@ end
 
 -- ran once
 
-local orderedrooms_string = "local ORDERED_ROOMS = { "
+local orderedrooms_string = "local orderedrooms = {}\n\nlocal ORDERED_ROOMS = { "
 
 for _,name in ipairs(ordered_rooms) do
     orderedrooms_string = orderedrooms_string .. '"' .. name .. '", '    -- be very careful : for example at some point an area is called Fortress of Winds "Outside", this was replaced with parentheses instead of quotations marks
 end
-orderedrooms_string = string.sub(orderedrooms_string,1,-3) .. " }"
+orderedrooms_string = string.sub(orderedrooms_string,1,-3) .. " }\n\n"
+
+orderedrooms_string = orderedrooms_string .. "function orderedrooms.get_rooms()\n    return ORDERED_ROOMS\nend\n\nreturn orderedrooms"
 
 local newfile = io.open ("orderedrooms.lua", "w")
 newfile:write(orderedrooms_string)
