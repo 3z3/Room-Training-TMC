@@ -6,6 +6,8 @@ local temp_save = 'temporary_savestate.State'
 
 local timer_frames = 0
 local menu_time = 0
+local time_taken_display_counter = 0
+local time_taken_display = ""
 
 local name_to_area = {}
 local name_to_room = {}
@@ -132,6 +134,8 @@ while true do
 
     if current_roomandarea ~= previous_roomandarea and forms.ischecked(ROOM_PRACTICE_CHECK) then
         savestate.load(path .. temp_save)
+        time_taken_display_counter = 90
+        time_taken_display = tostring(timer_frames)
         timer_frames = 0
         menu_time = 0
         if forms.ischecked(SHUFFLE_RNG) then
@@ -142,6 +146,8 @@ while true do
         end
     elseif current_roomandarea ~= previous_roomandarea then
         savestate.save(path .. temp_save)
+        time_taken_display_counter = 90
+        time_taken_display = tostring(timer_frames)
         timer_frames = 0
         menu_time = 0
         if forms.ischecked(SHUFFLE_RNG) then
@@ -162,6 +168,11 @@ while true do
             menu_time = menu_time + 1  
         end
         gui.drawText(160,137,tostring(menu_time) .. " f : menu","lime","black",10)
+    end
+
+    if time_taken_display_counter > 0 and forms.ischecked(TIMER_CHECK) then    -- displays the time taken at the end of each room
+        time_taken_display_counter = time_taken_display_counter - 1
+        gui.drawText(95,50,time_taken_display .. " f","red","black",15)
     end
 
     previous_roomandarea = current_roomandarea
