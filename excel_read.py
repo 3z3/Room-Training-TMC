@@ -30,7 +30,7 @@ area_individual_names = {}
 for memory,name in memory_to_areas.items():
     area_individual_names[name] = area_individual_names.get(name,0) + 1
     if area_individual_names[name] > 1:
-        memory_to_areas[memory] = name + " " + string(area_individual_names[name])    #count, eg. "Dark Hyrule Castle 2"
+        memory_to_areas[memory] = name + " " + str(area_individual_names[name])    #count, eg. "Dark Hyrule Castle 2"
 
 #translates the memory_to_rooms dictionary into Lua
 for key,value in memory_to_rooms.items():
