@@ -201,13 +201,13 @@ local function serialize_iwram(database_table,variable_name)
 end
 
 -- setting up the module
-savestates_string = 'local anypercent_savestates = {}' .. '\n' .. '\n' .. serialize(database,'DATABASE') .. '\n' .. '\n' .. serialize_iwram(iwram_database,'IWRAM_DATABASE') .. '\n' .. '\n' .. serialize(ewram_database,'EWRAM_DATABASE') .. '\n' .. '\n' .. serialize(goals,'GOALS') .. '\n' .. '\n'
+savestates_string = 'local savestates = {}' .. '\n' .. '\n' .. serialize(database,'DATABASE') .. '\n' .. '\n' .. serialize_iwram(iwram_database,'IWRAM_DATABASE') .. '\n' .. '\n' .. serialize(ewram_database,'EWRAM_DATABASE') .. '\n' .. '\n' .. serialize(goals,'GOALS') .. '\n' .. '\n'
 
-savestates_string = savestates_string .. 'function anypercent_savestates.get_database()\n    return DATABASE\n' .. 'end\n\nfunction anypercent_savestates.get_iwram_database()\n    return IWRAM_DATABASE\n' .. 'end\n\nfunction anypercent_savestates.get_ewram_database()\n    return EWRAM_DATABASE\n' .. 'end\n\nfunction anypercent_savestates.get_goals()\n    return GOALS\n' .. 'end\n\n'
+savestates_string = savestates_string .. 'function savestates.get_database()\n    return DATABASE\n' .. 'end\n\nfunction savestates.get_iwram_database()\n    return IWRAM_DATABASE\n' .. 'end\n\nfunction savestates.get_ewram_database()\n    return EWRAM_DATABASE\n' .. 'end\n\nfunction savestates.get_goals()\n    return GOALS\n' .. 'end\n\n'
 
-savestates_string = savestates_string .. 'return anypercent_savestates'
+savestates_string = savestates_string .. 'return savestates'
 -- finished with module
 
-local newfile = io.open ("anypercent_savestates.lua", "w")
+local newfile = io.open ("savestates.lua", "w")
 newfile:write(savestates_string)
 newfile:close()
