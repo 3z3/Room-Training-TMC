@@ -1,10 +1,10 @@
 RMNM = require "roomnames"   -- Lua file containing tables that translate memory addresses to names
 ORM = require "orderedrooms"    -- Lua file containing every room visited in any% in order
-STT = require "anypercent_savestates"
+STT = require "savestates"
 local path = '..\\GBA\\State\\'
 local temp_save = 'temporary_savestate.State'
 
--- everything here is from the anypercent_savestates module, replaces the need for savestates
+-- everything here is from the savestates module, replaces the need for savestates
 local database = STT.get_database()
 local iwram_database = STT.get_iwram_database()
 local ewram_database = STT.get_ewram_database()
