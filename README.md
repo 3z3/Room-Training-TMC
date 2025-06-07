@@ -5,7 +5,7 @@ _Individual room trainer Lua script for the any% category of The Minish Cap._
 _prerequisites_ : You have a Bizhawk folder from which you launch the Bizhawk emulator, everything that is described here takes place inside this folder.
 You have the latest version of Bizhawk; this works on Bizhawk 2.9.1 on my machine, and as far as I know, Lua integration has changed since older versions of Bizhawk. If it still doesn't work, you should be able to check Lua specificities on Config -> Customize -> Advanced in the Bizhawk window.
 * create an empty (text) file named `room_pb.txt` in the Lua folder
-* put `room_training.lua`, `roomnames.lua`, `orderedrooms.lua` and `anypercent_savestates.lua` inside the Lua folder
+* put `room_training.lua`, `roomnames.lua`, `orderedrooms.lua` and `savestates.lua` inside the Lua folder
 * run the script `room_training.lua` from the emulator's interface
 
 ## How to create a Room Trainer for your own category ?
